@@ -10,9 +10,10 @@ export type Chat = {
 }
 export type ChatListProps = {
     chatList: Chat[];
-    chatAdded: (chatName: string) => void
+    chatAdded: (chatName: string) => void;
+    goToChat: (chatId: number) => void;
 }
-export const ChatList: React.FC<ChatListProps> = ({ chatList, chatAdded }) => {
+export const ChatList: React.FC<ChatListProps> = ({ chatList, chatAdded, goToChat }) => {
     const [chatName, setChatName] = useState<string>('');
 
     const handleSubmit = (event: React.FormEvent<HTMLElement>) => {
@@ -23,7 +24,7 @@ export const ChatList: React.FC<ChatListProps> = ({ chatList, chatAdded }) => {
     }
     let chatBars = chatList.map((chat) =>
         <Nav.Item key={chat.id}>
-            <Nav.Link as={Link} to={chat.link}>{chat.title}</Nav.Link>
+            <Nav.Link onClick={() => goToChat(chat.id)} >{chat.title}</Nav.Link>
         </Nav.Item>);
     return <Nav className="flex-column">
         {chatBars}

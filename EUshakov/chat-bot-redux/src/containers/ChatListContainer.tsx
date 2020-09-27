@@ -20,5 +20,9 @@ export const ChatListContainer: React.FC<{}> = () => {
         dispatch(push(`/chat/${nextChatId}`));
     }
 
-    return <ChatList chatList={chatList} chatAdded={handleChatAdded} />
+    const handleGoToChat = (chatId: number) => {
+        dispatch(push(`/chat/${chatId}`));
+    }
+
+    return <ChatList chatList={chatList} chatAdded={handleChatAdded} goToChat={handleGoToChat} />
 }
