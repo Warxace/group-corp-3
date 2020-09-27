@@ -1,22 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './App/App';
-import { store } from './store';
+import { store, history } from './store';
+import { ConnectedRouter } from 'connected-react-router';
 
 
 ReactDOM.render(
-
-  <Provider store={store}>
-    <React.StrictMode>
-      <BrowserRouter>
+  <React.StrictMode>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
         <App />
-      </BrowserRouter>
-
-    </React.StrictMode>
-  </Provider>,
+      </ConnectedRouter>
+    </Provider>
+  </React.StrictMode>,
 
   document.getElementById('root')
 );
